@@ -90,8 +90,8 @@ output.elasticsearch:
   index: "metricbeat-%{+yyyy.MM.dd}"
   # Optional protocol and basic auth credentials.
   #protocol: "https"
-  username: "elk_username"
-  password: "elk_password"
+  username: "{{ elk_username }}"
+  password: "{{ elk_password }}"
 
 #----------------------------- Logstash output --------------------------------
 #output.logstash:
