@@ -25,7 +25,8 @@ setup.template.settings:
   index.number_of_shards: 1
   index.codec: best_compression
   #_source.enabled: false
-
+setup.template.name: "metricbeat"
+setup.template.pattern: "metricbeat-*"
 #================================ General =====================================
 
 # The name of the shipper that publishes the network data. It can be used to group
@@ -65,7 +66,7 @@ setup.kibana:
   # In case you specify and additional path, the scheme is required: http://localhost:5601/path
   # IPv6 addresses should always be defined as: https://[2001:db8::1]:5601
   host: "{{ elk_url }}:5601"
-
+setup.dashboards.index: "metricbeat-*"
 #============================= Elastic Cloud ==================================
 
 # These settings simplify using metricbeat with the Elastic Cloud (https://cloud.elastic.co/).
