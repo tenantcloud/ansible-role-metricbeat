@@ -16,7 +16,7 @@
       src: 'files/etc/'
       dest: '/etc/'
   - name: Add confiration files
-    copy:
+    template:
       src: 'files/etc/metricbeat/metricbeat.yml'
       dest: '/etc/metricbeat/metricbeat.yml'
   - name: Restart metricbeat
