@@ -1,14 +1,18 @@
-Metricbeat
+Ansible role for setup metricbeat on elk clients.
 =========
 
-Metricbeat role
+Metricbeat setup role on elk clients. This role include in default terraform scenario for auto-deploy new server.
 
-License
 -------
 
-BSD
+For manual installation this role on new client need install galaxy and run playbook:
 
-Author Information
-------------------
+```ansible-galaxy install tenantcloud.ansible_role_metricbeat```
 
-Created by [Igor Bronovskyi](https://github.com/BrunIF). DevOps at TenantCloud LLC
+Add this role name to playbook and run:
+
+```cd /tmp/.ansible/ && ansible-playbook playbook-name.yml```
+
+-------
+
+Or in avaliable playbook add to hosts file new client IP address or hostname and run playbook.
