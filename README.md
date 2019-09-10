@@ -16,3 +16,17 @@ Add this role name to playbook and run:
 -------
 
 Or in avaliable playbook add to hosts file new client IP address or hostname and run playbook.
+
+-------
+
+Variable included in this role:
+
+-------
+
+Sample playbook-name.yml
+
+- hosts: localhost
+  become: yes
+  roles:
+    - ansible-role-metricbeat
+
