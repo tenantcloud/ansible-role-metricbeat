@@ -1,32 +1,50 @@
-Ansible role for setup metricbeat on elk clients.
+tenantcloud.ansible_role_metricbeat
 =========
 
-Metricbeat setup role on elk clients. This role include in default terraform scenario for auto-deploy new server.
+Ansible role for setup authentication between elasticsearch and logstash. This role include in default terraform scenario for auto-deploy new server.
 
+Requirements
+------------
+
+ELK Stack, Elastalert, ReadOnlyRest
+
+Role Variables
+--------------
+
+ea_dir: elastalert
+Name elastalert directory
+
+elk_url: 10.0.0.1
+ELK server IP address
+
+elk_username: ChangeMe
+Username from readonlyrest for connect to elasticsearch
+
+elk_password: ChangeMe
+Password from readonlyrest for connect to elasticsearch
+
+Dependencies
+------------
+
+Example Playbook
+----------------
+
+  - hosts: localhost
+    vars:
+      ea_dir: elastalert
+      elk_url: 10.0.0.1
+      elk_username: ChangeMe
+      elk_password: ChangeMe
+    become: yes
+    roles:
+      - tenantcloud.ansible_role_metricbeat
+
+License
 -------
 
-For manual installation this role on new client need install galaxy and run playbook:
+BSD
 
-```ansible-galaxy install tenantcloud.ansible_role_metricbeat```
+Author Information
+------------------
 
-Add this role name to playbook and run:
-
-```cd /tmp/.ansible/ && ansible-playbook playbook-name.yml```
-
--------
-
-Or in avaliable playbook add to hosts file new client IP address or hostname and run playbook.
-
--------
-
-Variable included in this role:
-
--------
-
-Sample playbook-name.yml
-
-- hosts: localhost
-  become: yes
-  roles:
-    - ansible-role-metricbeat
-
+TenantCloud DevOps Team
