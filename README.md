@@ -1,7 +1,7 @@
 tenantcloud.ansible_role_metricbeat
 =========
 
-Ansible role for setup authentication between elasticsearch and logstash. This role include in default terraform scenario for auto-deploy new server.
+Ansible role for install and setup metricbeat. This role include in default terraform scenario for auto-deploy new server.
 
 Requirements
 ------------
