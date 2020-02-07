@@ -12,6 +12,7 @@
     apt:
       name: metricbeat
       state: latest
+      enabled: true
   - name: Add confiration files
     copy:
       src: 'files/etc/'
