@@ -14,8 +14,7 @@
       state: stopped
   - name: Install Metricbeat
     apt:
-      name: metricbeat
-      state: "{{ beat_version }}"
+      name: "metricbeat={{ release_version }}"
       enabled: true
     notify:
       - Stop metricbeat
