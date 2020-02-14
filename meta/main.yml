@@ -1,4 +1,5 @@
 galaxy_info:
+  role_name: metricbeat
   author: Igor Bronovskyi
   description: Install Metricbeat on testing servers
   company: "TenantCloud LLC"
