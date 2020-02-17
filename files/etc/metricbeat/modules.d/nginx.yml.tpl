@@ -1,5 +1,4 @@
 # Module: nginx
-# Docs: https://www.elastic.co/guide/en/beats/metricbeat/6.x/metricbeat-module-nginx.html
 
 - module: nginx
   #metricsets:

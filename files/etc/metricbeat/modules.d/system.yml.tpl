@@ -1,5 +1,4 @@
 # Module: system
-# Docs: https://www.elastic.co/guide/en/beats/metricbeat/6.x/metricbeat-module-system.html
 
 - module: system
   period: 10s

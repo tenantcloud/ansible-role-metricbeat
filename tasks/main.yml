@@ -1,32 +1,42 @@
 ---
-  - name: Add Elastic GPG Key
-    apt_key:
-      url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
-      state: present
-  - name: Add Elastic repository
-    apt_repository:
-      repo: "deb https://artifacts.elastic.co/packages/{{ elasticsearch_version }}/apt stable main"
-      state: present
-      update_cache: yes
-  - name: Stop metricbeat
-    service:
-      name: metricbeat
-      state: stopped
-  - name: Install Metricbeat
-    apt:
-      name: "metricbeat={{ release_version }}"
-      enabled: true
-    notify:
-      - Stop metricbeat
-  - name: Add confiration files
-    copy:
-      src: 'files/etc/'
-      dest: '/etc/'
-  - name: Add confiration files
-    template:
-      src: 'files/etc/metricbeat/metricbeat.yml'
-      dest: '/etc/metricbeat/metricbeat.yml'
-  - name: Restart metricbeat
-    service:
-      name: metricbeat
-      state: restarted
+- name: Add Elastic GPG Key
+  apt_key:
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
+
+- name: Add Elastic repository
+  apt_repository:
+    repo: "{{ elasic_repo }}/{{ elasticsearch_version }}/apt stable main"
+    state: present
+    update_cache: true
+
+- name: Stop metricbeat
+  service:
+    name: metricbeat
+    state: stopped
+  ignore_errors: true
+
+- name: Install Metricbeat
+  apt:
+    name: "metricbeat={{ release_version }}"
+  notify:
+    - Stop metricbeat
+
+- name: Add confiration files
+  copy:
+    src: 'files/etc/metricbeat/modules.d/{{ item }}.tpl'
+    dest: '/etc/metricbeat/modules.d/{{ item }}'
+  loop:
+    - system.yml
+    - nginx.yml
+    - php_fpm.yml
+
+- name: Add confiration files
+  template:
+    src: 'files/etc/metricbeat/metricbeat.yml.tpl'
+    dest: '/etc/metricbeat/metricbeat.yml'
+
+- name: Restart metricbeat
+  service:
+    name: metricbeat
+    state: restarted
