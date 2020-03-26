@@ -36,6 +36,15 @@
     src: 'files/etc/metricbeat/metricbeat.yml.tpl'
     dest: '/etc/metricbeat/metricbeat.yml'
 
+- name: Change logging configuration
+  lineinfile:
+    path: "{{ item.path }}"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  loop:
+    - { path: '{{ metricbeat_daemon_file }}', regexp: '^Environment="BEAT_LOG', line: '#Environment="BEAT_LOG_OPTS=-e"' }
+    - { path: '{{ metricbeat_daemon_file }}', regexp: '^ExecStart=', line: 'ExecStart=/usr/share/metricbeat/bin/metricbeat $BEAT_CONFIG_OPTS $BEAT_PATH_OPTS' }
+
 - name: Restart metricbeat
   service:
     name: metricbeat
