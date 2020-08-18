@@ -22,6 +22,11 @@
   notify:
     - Stop metricbeat
 
+- name: Enable metricbeat
+  service:
+    name: metricbeat
+    enabled: true
+
 - name: Add confiration files
   copy:
     src: 'files/etc/metricbeat/modules.d/{{ item }}.tpl'
