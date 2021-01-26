@@ -1,4 +1,7 @@
-tenantcloud.ansible_role_metricbeat
+
+![Lint Ansible Roles](https://github.com/tenantcloud/ansible-role-metricbeat/workflows/Lint%20Ansible%20Roles/badge.svg)
+
+tenantcloud.metricbeat
 =========
 
 Ansible role for install and setup metricbeat. This role include in default terraform scenario for auto-deploy new server.
@@ -38,7 +41,7 @@ Example Playbook
       elk_password: ChangeMe
     become: yes
     roles:
-      - tenantcloud.ansible_role_metricbeat
+      - tenantcloud.metricbeat
 ```
 
 License

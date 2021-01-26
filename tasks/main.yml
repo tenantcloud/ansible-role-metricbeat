@@ -31,6 +31,7 @@
   copy:
     src: 'files/etc/metricbeat/modules.d/{{ item }}.tpl'
     dest: '/etc/metricbeat/modules.d/{{ item }}'
+    mode: 0644
   loop:
     - system.yml
     - nginx.yml
@@ -40,6 +41,7 @@
   template:
     src: 'files/etc/metricbeat/metricbeat.yml.tpl'
     dest: '/etc/metricbeat/metricbeat.yml'
+    mode: 0600
 
 - name: Change logging configuration
   lineinfile:
@@ -47,8 +49,13 @@
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
   loop:
-    - { path: '{{ metricbeat_daemon_file }}', regexp: '^Environment="BEAT_LOG', line: '#Environment="BEAT_LOG_OPTS=-e"' }
-    - { path: '{{ metricbeat_daemon_file }}', regexp: '^ExecStart=', line: 'ExecStart=/usr/share/metricbeat/bin/metricbeat $BEAT_CONFIG_OPTS $BEAT_PATH_OPTS' }
+    - {path: '{{ metricbeat_daemon_file }}',
+       regexp: '^Environment="BEAT_LOG',
+       line: '#Environment="BEAT_LOG_OPTS=-e"'}
+    - {path: '{{ metricbeat_daemon_file }}',
+       regexp: '^ExecStart=',
+       line: "ExecStart=/usr/share/metricbeat/bin/metricbeat
+        $BEAT_CONFIG_OPTS $BEAT_PATH_OPTS"}
 
 - name: Restart metricbeat
   service:
